@@ -15,28 +15,42 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.get('/api/:param', (req, res) => {
-    const userParam = req.params.param;
-    if (userParam.includes('-')) {
+app.get('/api', (req, res) => {
+    const date = new Date();
+    const currentDateUtc = date.toUTCString();
+    const unixDate = date.getTime();
+    res.json({
+        unix: unixDate,
+        utc: currentDateUtc
+    });
+});
 
-        const date = new Date(userParam);
+app.get('/api/:param', (req, res) => {
+  const userParam = req.params.param;
+  if (userParam.includes('-')) {
+
+      const date = new Date(userParam);
+
+      if (date.toString() === 'Invalid Date') {
+        res.json({error: "Invalid Date"});
+      } else {
         const correctDate = date.toUTCString();
         const unixDate = Date.parse(correctDate);
         res.json({
             unix: unixDate,
             utc: correctDate 
         });
+      } 
+  } else {
+      const inted = parseInt(userParam);
+      const date = new Date(inted);
+      const correctDate = date.toUTCString();
+      res.json({
+          unix: inted,
+          utc: correctDate
+      });
 
-    } else {
-        const inted = parseInt(userParam);
-        const date = new Date(inted);
-        const correctDate = date.toUTCString();
-        res.json({
-            unix: inted,
-            utc: correctDate
-        });
-
-    }
+  }
 });
 
 app.listen(port, () => {
