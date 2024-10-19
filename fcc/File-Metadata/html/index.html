@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Metadata Microservice</title>
+</head>
+<body>
+    <h1>File Metadata Microservice</h1>
+    <h2>Usage : </h2>
+    <p>upload a file to have informations</p>
+    <fieldset>
+        <p>Upload a file</p>
+        <form action="/api/fileanalyse" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileToUpload">
+            <button type="submit">Upload</button>
+        </form>
+    </fieldset>
+</body>
+</html>
