@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Exercise tracker</h1>
+    <div class="newUser">
+        <form action="/api/users" method="post">
+            <h1>Create new user</h1>
+            <input type="text" name="userName" placeholder="username">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="container1">
+        <form action="/api/users/:id/exercises" method="post" class="addExercises">
+            <h1>Add exercises</h1>
+            <input type="text" name="idUser" placeholder="_id">
+            <input type="text" name="description" placeholder="description">
+            <input type="text" name="duration" placeholder="duration (mins)">
+            <input type="text" name="date" placeholder="date (yyyy-mm-dd)">
+            <button type="submit">Add</button>
+        </form>
+    </div>
+</body>
+</html>
+
+<style>
+.container1 {
+    width: 20%;
+}
+.addExercises {
+    display: flex;
+    flex-direction: column;
+}
+</style>
